@@ -14,7 +14,7 @@ module.exports = yeoman.Base.extend({
         type: 'input',
         name: 'name',
         message: 'Your document name',
-        default: this.appname
+        default: this.appname.split(" ").join("-")
       },
       {
         type: 'list',
