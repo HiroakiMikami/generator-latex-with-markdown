@@ -35,7 +35,9 @@ all: document
 
 document: $(destinationFile)
 $(destinationFile): $(generated)/$(mainTexName).pdf
-	ln -s $(generated)/$(mainTexName).pdf $(destinationFile)
+	if [ ! -n "`find $@ -maxdepth 0 -type l 2> /dev/null`" ]; then \
+		ln -s $(generated)/$(mainTexName).pdf $(destinationFile); \
+	fi
 $(generated)/$(mainTexName).pdf: $(generatedFiles)
 	# Generate aux file
 	cd $(generated) && \
