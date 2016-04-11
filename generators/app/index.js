@@ -68,7 +68,12 @@ module.exports = yeoman.Base.extend({
         });
       }).then(() => {
         // Check LaTeX engine
-        checkWhetherToolExists(this.props[latexEngine], () => { done(); });
+        return new Promise((resolve, reject) => {
+          checkWhetherToolExists(this.props[latexEngine], () => { resolve(); });
+        });
+      }).then(() => {
+        // Check 'pandoc'
+        checkWhetherToolExists("pandoc", () => { done(); });
       });
     }
   },

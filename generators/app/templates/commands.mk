@@ -2,3 +2,7 @@
 ## latex
 latex = <%= latexEngine %>
 latexFlags = --interaction=nonstopmode --kanji=utf8
+
+## markdown
+pandoc = pandoc
+pandocFlags = -t latex
