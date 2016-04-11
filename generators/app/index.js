@@ -14,7 +14,7 @@ module.exports = yeoman.Base.extend({
         type: 'input',
         name: 'name',
         message: 'Your document name',
-        default: this.appname
+        default: this.appname.split(" ").join("-")
       },
       {
         type: 'list',
@@ -68,7 +68,12 @@ module.exports = yeoman.Base.extend({
         });
       }).then(() => {
         // Check LaTeX engine
-        checkWhetherToolExists(this.props[latexEngine], () => { done(); });
+        return new Promise((resolve, reject) => {
+          checkWhetherToolExists(this.props[latexEngine], () => { resolve(); });
+        });
+      }).then(() => {
+        // Check 'pandoc'
+        checkWhetherToolExists("pandoc", () => { done(); });
       });
     }
   },
