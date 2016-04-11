@@ -6,7 +6,7 @@
   "author": {
     "name": "Mikami Hiroaki",
     "email": "hiroaki8270@gmail.com",
-    "url": ""
+    "url": "http://hiroakimikami.github.io/"
   },
   "files": [
     "generators"
@@ -18,8 +18,7 @@
   ],
   "dependencies": {
     "yeoman-generator": "^0.22.0",
-    "chalk": "^1.0.0",
-    "yosay": "^1.0.2"
+    "which": "^1.2.4"
   },
   "devDependencies": {
     "yeoman-test": "^1.0.0",
