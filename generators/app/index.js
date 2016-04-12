@@ -94,11 +94,19 @@ module.exports = yeoman.Base.extend({
         for (var i = 0; i < files.length; i++) {
           const file = files[i];
 
-          this.fs.copyTpl(
-            this.templatePath(file),
-            this.destinationPath(file),
-            templateParameter
-          );
+          if (file == "src") {
+            // Should not use copyTpl because the source directory includes binary files (images)
+            this.fs.copy(
+              this.templatePath(file),
+              this.destinationPath(file)
+            )
+          } else {
+            this.fs.copyTpl(
+              this.templatePath(file),
+              this.destinationPath(file),
+              templateParameter
+            );
+          }
         }
       }
       done();

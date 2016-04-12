@@ -3,6 +3,8 @@
 latex = <%= latexEngine %>
 latexFlags = --interaction=nonstopmode --kanji=utf8
 
+bb=extractbb
+
 ## markdown
 pandoc = pandoc
 pandocFlags = -t latex
