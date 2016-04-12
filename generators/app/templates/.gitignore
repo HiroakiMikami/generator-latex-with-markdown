@@ -1,2 +1,3 @@
 generated/
 <%= documentName %>.pdf
+<%= documentName %>-draft.pdf
