@@ -14,7 +14,7 @@ fi
 
 while grep "${warningAboutReference}" ${target}.log
 do
-    ${latex} ${target} ${flags}
+  ${latex} ${target} ${flags}
 done
 
 
