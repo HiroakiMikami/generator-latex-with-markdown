@@ -96,9 +96,9 @@ $(generatedMainDraftTexFile): $(mainTexFile)
 			-e 's|\documentclass\[|\documentclass[draft, |g' \
 			$(mainTexFile) > $(generatedMainDraftTexFile)
 
-assemble: $(generated)/$(mainTexName)-assmeble.tex
-$(generated)/$(mainTexName)-assmeble.tex: $(generatedMainTexFile) $(generatedTexFiles)
-	node $(script)/assemble.js $(generated) $(generatedMainTexFile) > $(generated)/$(mainTexName)-assmeble.tex
+assemble: $(generated)/$(mainTexName)-assemble.tex
+$(generated)/$(mainTexName)-assemble.tex: $(generatedMainTexFile) $(generatedTexFiles)
+	node $(script)/assemble.js $(generated) $(generatedMainTexFile) > $(generated)/$(mainTexName)-assemble.tex
 
 clean:
 	rm -f $(generatedFiles) $(boundingBoxes)
