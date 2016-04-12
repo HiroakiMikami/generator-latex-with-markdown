@@ -57,7 +57,7 @@ endif
 include parameters.mk
 include commands.mk
 
-.PHONY: all document draft clean
+.PHONY: all document draft assemble clean
 
 all: document
 
@@ -95,6 +95,10 @@ $(generatedMainDraftTexFile): $(mainTexFile)
 	sed -e 's|\documentclass{|\documentclass[draft]{|g' \
 			-e 's|\documentclass\[|\documentclass[draft, |g' \
 			$(mainTexFile) > $(generatedMainDraftTexFile)
+
+assemble: $(generated)/$(mainTexName)-assmeble.tex
+$(generated)/$(mainTexName)-assmeble.tex: $(generatedMainTexFile) $(generatedTexFiles)
+	node $(script)/assemble.js $(generated) $(generatedMainTexFile) > $(generated)/$(mainTexName)-assmeble.tex
 
 clean:
 	rm -f $(generatedFiles) $(boundingBoxes)
