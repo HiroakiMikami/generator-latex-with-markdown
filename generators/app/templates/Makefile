@@ -57,7 +57,7 @@ endif
 include parameters.mk
 include commands.mk
 
-.PHONY: all document draft clean
+.PHONY: all document draft assemble clean
 
 all: document
 
@@ -92,9 +92,13 @@ $(generated)/$(mainTexName)-draft.pdf: $(generatedMainDraftTexFile) $(generatedF
 	../$(script)/tex2pdf.sh $(latex) $(mainTexName)-draft $(latexFlags)
 
 $(generatedMainDraftTexFile): $(mainTexFile)
-		sed -e 's|\documentclass{|\documentclass[draft]{|g' \
-				-e 's|\documentclass\[|\documentclass[draft, |g' \
-				$(mainTexFile) > $(generatedMainDraftTexFile)
+	sed -e 's|\documentclass{|\documentclass[draft]{|g' \
+			-e 's|\documentclass\[|\documentclass[draft, |g' \
+			$(mainTexFile) > $(generatedMainDraftTexFile)
+
+assemble: $(generated)/$(mainTexName)-assmeble.tex
+$(generated)/$(mainTexName)-assmeble.tex: $(generatedMainTexFile) $(generatedTexFiles)
+	node $(script)/assemble.js $(generated) $(generatedMainTexFile) > $(generated)/$(mainTexName)-assmeble.tex
 
 clean:
 	rm -f $(generatedFiles) $(boundingBoxes)
