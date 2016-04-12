@@ -3,7 +3,7 @@ mainTexName=main
 
 # Directories
 root=.
-scriptDir=$(root)/scripts
+script=$(root)/scripts
 ## Sources
 src=$(root)/src
 doc=$(src)/doc
@@ -62,7 +62,7 @@ $(generated)/$(mainTexName).pdf: $(generatedFiles) $(boundingBoxes)
 	$(latex) $(mainTexName) $(latexFlags)
 	# Generate PDF file
 	cd $(generated) && \
-	../$(scriptDir)/tex2pdf.sh $(latex) $(mainTexName) $(latexFlags)
+	../$(script)/tex2pdf.sh $(latex) $(mainTexName) $(latexFlags)
 
 clean:
 	rm -f $(generatedFiles) $(boundingBoxes)
