@@ -4,7 +4,6 @@ target=$2
 shift 2
 flags=$@
 
-# 相互参照を示すlog message
 warningAboutReference="^LaTeX Warning: Label(s) may have changed."
 
 if [ -e ${target}.bbl ]
