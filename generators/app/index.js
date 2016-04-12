@@ -82,6 +82,16 @@ module.exports = yeoman.Base.extend({
           checkWhetherToolExists('dot', () => { resolve(); });
         });
       }).then(() => {
+        // Check 'latexdiff'
+        return new Promise((resolve, reject) => {
+          checkWhetherToolExists('latexdiff', () => { resolve(); });
+        });
+      }).then(() => {
+        // Check 'git'
+        return new Promise((resolve, reject) => {
+          checkWhetherToolExists('git', () => { resolve(); });
+        });
+      }).then(() => {
         // Check 'pandoc'
         checkWhetherToolExists("pandoc", () => { done(); });
       });
