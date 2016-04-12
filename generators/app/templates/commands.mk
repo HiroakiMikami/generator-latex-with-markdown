@@ -8,3 +8,6 @@ bb=extractbb
 ## markdown
 pandoc = pandoc
 pandocFlags = -t latex
+
+## inkscape
+inkscape = inkscape
