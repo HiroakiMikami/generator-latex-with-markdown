@@ -27,3 +27,10 @@ $(generatedImage)/%.pdf: $(image)/%.pdf
 	if [ ! -n "`find $@ -maxdepth 0 -type l 2> /dev/null`" ]; then \
 	  ln -s `realpath $< --relative-to=$(shell dirname $@)` $@; \
 	fi
+
+## BibTex files
+$(generatedBib)/%.bib: $(bib)/%.bib
+	mkdir -p $(generatedBib)
+	if [ ! -n "`find $@ -maxdepth 0 -type l 2> /dev/null`" ]; then \
+	  ln -s `realpath $< --relative-to=$(shell dirname $@)` $@; \
+	fi

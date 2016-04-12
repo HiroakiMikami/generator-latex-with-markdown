@@ -3,6 +3,9 @@
 latex = <%= latexEngine %>
 latexFlags = --interaction=nonstopmode --kanji=utf8
 
+bibtex=pbibtex
+bibtexFlags = --kanji=utf8
+
 bb=extractbb
 
 ## markdown
