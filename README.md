@@ -1,20 +1,99 @@
-# generator-latex-with-markdown [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# generator-latex-with-markdown
+<!--
+[![NPM version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![Dependency Status][daviddm-image]][daviddm-url]
+-->
 > Yeoman generator for LaTeX documents
 
-## Installation
+## Features
+1. can combine LaTeX and markdown
+2. can deal with `svg` and `dot`(graphviz) files
+3. can see the difference between two Git commits
 
-First, install [Yeoman](http://yeoman.io) and generator-latex-with-markdown using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+## Usage of a Created Project
+### Structure
+The structure of the project as follows:
+
+```
++--- [ProjectName].pdf       # Generated PDF document
++--- [ProjectName]-draft.pdf # Generated PDF document (draft mode)
++--- diff.pdf                # Difference between two Git commits
++--- parameters.mk           # Definition of the parameters
++--- commands.mk             # Commands and options used to compile
++--- src/
+|     +--- main.tex          # The main tex file
+|     +--- doc/
+|     |     |--- foo.tex     # Tex file used in main.tex
+|     |     +--- bar.md      # Markdown file can be used
+|     +--- image/
+|     |     +--- image1.png
+|     |     +--- image2.jpg
+|     |     +--- image3.pdf
+|     |     +--- image4.svg  # svg files are converted to PDF files
+|     +--- graphviz
+|     |     +--- graph.dot   # The graphviz file
+|     +--- bib
+|           +--- ref.bib     # The reference file
++--- generated/
++--- scripts/
++--- makefile.d/
++--- Makefile
+```
+
+All files you write to make a document are contained in `src` directory. The final outcomes (pdf files) are shown in the root directory.
+
+### Compile a Document
+To build a document, run:
+```bash
+make # or make document or make all
+```
+
+#### Using Draft Mode
+To build a document in draft mode, run:
+```bash
+make draft
+```
+
+### Show a Difference of two Git commits
+```bash
+./pdf-diff.sh <old-commit> <new-commit>
+evince diff.pdf
+```
+
+> **Note:**
+> I think there are no bugs, but I recommend to run `git commit` before running `pdf-diff.sh`. `pdf-diff.sh` operates the revision graph of Git, so changes that are not committed may be erased.
+
+## Generator Usage
+### 1. Install [Yeoman](http://yeoman.io) and this generator
+Install [Yeoman](http://yeoman.io) and generator-latex-with-markdown using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
+# 'sudo' may be required in some environments.
 npm install -g yo
 npm install -g generator-latex-with-markdown
 ```
 
-Then generate your new project:
+### 2. Install the Depended Tools
+Install the following tools:
 
+* [inkscape](https://inkscape.org)
+* [dot(Graphviz)](http://www.graphviz.org/)
+* [pandoc](http://pandoc.org/)
+* [latexdiff](https://www.ctan.org/tex-archive/support/latexdiff)
+* [git](https://git-scm.com/)
+
+The generator occurs an error if the depended tools are not installed.
+
+### 3. Generate Your New Project
 ```bash
 yo latex-with-markdown
 ```
+
+## Environment
+
+I tested this generator only in Linux, and I think that it does not work in OS X because some scripts (e.g., `realpath`) don't exist.
+[This](https://github.com/HiroakiMikami/generator-latex-with-markdown/issues/12) is an issue about cross platform.
 
 ## Getting To Know Yeoman
 
@@ -27,6 +106,7 @@ yo latex-with-markdown
 
 MIT © [Mikami Hiroaki]()
 
+<!--
 
 [npm-image]: https://badge.fury.io/js/generator-latex-with-markdown.svg
 [npm-url]: https://npmjs.org/package/generator-latex-with-markdown
@@ -34,3 +114,4 @@ MIT © [Mikami Hiroaki]()
 [travis-url]: https://travis-ci.org/hiroakimikami/generator-latex-with-markdown
 [daviddm-image]: https://david-dm.org/hiroakimikami/generator-latex-with-markdown.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/hiroakimikami/generator-latex-with-markdown
+-->
