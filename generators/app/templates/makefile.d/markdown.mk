@@ -1,2 +1,2 @@
 $(generatedDoc)/%.tex: $(doc)/%.md
-		$(pandoc) $< $(pandocFlags) > $@
+	$(pandoc) $< $(pandocFlags) > $@
