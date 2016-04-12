@@ -92,9 +92,9 @@ $(generated)/$(mainTexName)-draft.pdf: $(generatedMainDraftTexFile) $(generatedF
 	../$(script)/tex2pdf.sh $(latex) $(mainTexName)-draft $(latexFlags)
 
 $(generatedMainDraftTexFile): $(mainTexFile)
-		sed -e 's|\documentclass{|\documentclass[draft]{|g' \
-				-e 's|\documentclass\[|\documentclass[draft, |g' \
-				$(mainTexFile) > $(generatedMainDraftTexFile)
+	sed -e 's|\documentclass{|\documentclass[draft]{|g' \
+			-e 's|\documentclass\[|\documentclass[draft, |g' \
+			$(mainTexFile) > $(generatedMainDraftTexFile)
 
 clean:
 	rm -f $(generatedFiles) $(boundingBoxes)
