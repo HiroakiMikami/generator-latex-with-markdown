@@ -1,0 +1,6 @@
+digraph G {
+  /* Entities */
+  name  [label="", shape="square"]
+  /* Relationships */
+  F1 -> F2 [label="Test"]
+}
