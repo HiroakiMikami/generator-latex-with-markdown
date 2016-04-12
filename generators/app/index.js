@@ -72,9 +72,14 @@ module.exports = yeoman.Base.extend({
           checkWhetherToolExists(this.props[latexEngine], () => { resolve(); });
         });
       }).then(() => {
-        // Check inkscape
+        // Check 'inkscape'
         return new Promise((resolve, reject) => {
           checkWhetherToolExists('inkscape', () => { resolve(); });
+        });
+      }).then(() => {
+        // Check 'dot' (TODO: should not abort when dot is not found)
+        return new Promise((resolve, reject) => {
+          checkWhetherToolExists('dot', () => { resolve(); });
         });
       }).then(() => {
         // Check 'pandoc'

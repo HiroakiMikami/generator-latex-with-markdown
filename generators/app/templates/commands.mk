@@ -11,3 +11,7 @@ pandocFlags = -t latex
 
 ## inkscape
 inkscape = inkscape
+
+## graphviz
+dot = dot
+dotFlags = -Tsvg:cairo:cairo
