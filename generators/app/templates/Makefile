@@ -104,6 +104,7 @@ clean:
 	rm -f $(generatedFiles) $(boundingBoxes)
 	rm -f $(filesGeneratedByTex)
 	rm -f $(destinationFile) $(destinationDraftFile)
+	rm -f $(generatedMainTexFile) $(generatedMainDraftTexFile)
 
 # Make rules
 include makefile.d/markdown.mk
