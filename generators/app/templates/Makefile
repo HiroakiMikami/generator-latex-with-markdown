@@ -63,8 +63,8 @@ all: document
 
 document: $(destinationFile)
 $(destinationFile): $(generated)/$(mainTexName).pdf
-	if [ ! -n "`find $@ -maxdepth 0 -type l 2> /dev/null`" ]; then \
-	  ln -s `realpath $< --relative-to=$(shell dirname $@)` $@; \
+	if [ -z "$(realpath $@)" ]; then \
+		ln -s $(abspath $<) $@; \
 	fi
 $(generated)/$(mainTexName).pdf: $(generatedMainTexFile) $(generatedFiles) $(boundingBoxes)
 	# Generate aux file
@@ -78,8 +78,8 @@ $(generated)/$(mainTexName).pdf: $(generatedMainTexFile) $(generatedFiles) $(bou
 
 draft: $(destinationDraftFile)
 $(destinationDraftFile): $(generated)/$(mainTexName)-draft.pdf
-	if [ ! -n "`find $@ -maxdepth 0 -type l 2> /dev/null`" ]; then \
-	  ln -s `realpath $< --relative-to=$(shell dirname $@)` $@; \
+	if [ -z "$(realpath $@)" ]; then \
+		ln -s $(abspath $<) $@; \
 	fi
 $(generated)/$(mainTexName)-draft.pdf: $(generatedMainDraftTexFile) $(generatedFiles) $(boundingBoxes)
 	# Generate aux file
