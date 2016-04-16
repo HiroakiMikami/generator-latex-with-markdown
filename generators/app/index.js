@@ -28,6 +28,13 @@ module.exports = yeoman.Base.extend({
         ],
         default: 'pdflatex',
         store: true
+      },
+      {
+        type: 'input',
+        name: 'templateDirectory',
+        message: 'A directory containing your template sources',
+        default: '',
+        store: true
       }
     ];
 
@@ -111,15 +118,25 @@ module.exports = yeoman.Base.extend({
           latexEngine: this.props[latexEngine]
         };
 
+        if (this.props['templateDirectory'] !== "") {
+          // Copy a template source directory ()
+          const src = this.props['templateDirectory'];
+          const dst = this.destinationPath("src");
+          this.fs.copy(src, dst);
+        }
+
         for (var i = 0; i < files.length; i++) {
           const file = files[i];
 
           if (file == "src") {
-            // Should not use copyTpl because the source directory includes binary files (images)
-            this.fs.copy(
-              this.templatePath(file),
-              this.destinationPath(file)
-            )
+            // Copy src directory of the template when templateDirectory is not set
+            if (this.props['templateDirectory'] === "") {
+              // Should not use copyTpl because the source directory includes binary files (images)
+              this.fs.copy(
+                this.templatePath(file),
+                this.destinationPath(file)
+              )
+            }
           } else {
             this.fs.copyTpl(
               this.templatePath(file),
