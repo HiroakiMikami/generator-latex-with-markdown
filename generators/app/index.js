@@ -73,6 +73,11 @@ module.exports = yeoman.Base.extend({
           checkWhetherToolExists("ln", () => { resolve(); });
         });
       }).then(() => {
+        // Check 'find'
+        return new Promise((resolve, reject) => {
+          checkWhetherToolExists("find", () => { resolve(); });
+        });
+      }).then(() => {
         // Check 'bash'
         return new Promise((resolve, reject) => {
           checkWhetherToolExists("bash", () => { resolve(); });
