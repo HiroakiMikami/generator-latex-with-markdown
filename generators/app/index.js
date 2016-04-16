@@ -3,9 +3,20 @@ const yeoman = require('yeoman-generator');
 const which = require('which');
 const fs = require('fs');
 
+const templateDirectory = 'template-directory'
 const latexEngine = 'LaTeX engine';
 
 module.exports = yeoman.Base.extend({
+  constructor: function () {
+    yeoman.Base.apply(this, arguments);
+
+    this.option(templateDirectory, {
+      desc: 'A directory containing your template sources',
+      type: 'String',
+      defaults: ''
+    });
+  },
+
   prompting: function () {
     const done = this.async();
 
@@ -27,13 +38,6 @@ module.exports = yeoman.Base.extend({
           'platex'
         ],
         default: 'pdflatex',
-        store: true
-      },
-      {
-        type: 'input',
-        name: 'templateDirectory',
-        message: 'A directory containing your template sources',
-        default: '',
         store: true
       }
     ];
@@ -118,9 +122,9 @@ module.exports = yeoman.Base.extend({
           latexEngine: this.props[latexEngine]
         };
 
-        if (this.props['templateDirectory'] !== "") {
+        if (fs.existsSync(this.options[templateDirectory])) {
           // Copy a template source directory ()
-          const src = this.props['templateDirectory'];
+          const src = this.options[templateDirectory];
           const dst = this.destinationPath("src");
           this.fs.copy(src, dst);
         }
@@ -130,7 +134,7 @@ module.exports = yeoman.Base.extend({
 
           if (file == "src") {
             // Copy src directory of the template when templateDirectory is not set
-            if (this.props['templateDirectory'] === "") {
+            if (!fs.existsSync(this.options[templateDirectory])) {
               // Should not use copyTpl because the source directory includes binary files (images)
               this.fs.copy(
                 this.templatePath(file),
