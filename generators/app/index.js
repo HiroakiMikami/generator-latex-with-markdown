@@ -73,6 +73,11 @@ module.exports = yeoman.Base.extend({
           checkWhetherToolExists("ln", () => { resolve(); });
         });
       }).then(() => {
+        // Check 'find'
+        return new Promise((resolve, reject) => {
+          checkWhetherToolExists("find", () => { resolve(); });
+        });
+      }).then(() => {
         // Check 'bash'
         return new Promise((resolve, reject) => {
           checkWhetherToolExists("bash", () => { resolve(); });
@@ -152,26 +157,5 @@ module.exports = yeoman.Base.extend({
       }
       done();
     })
-
-    // Copy Makefiles
-    /*
-    this.fs.copy(
-      this.templatePath('Makefile'),
-      this.destinationPath('Makefile')
-    );
-    this.fs.copy(
-      this.templatePath('parameters.mk'),
-      this.destinationPath('parameters.mk')
-
-    /*
-    this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
-    );
-    */
   },
-
-  install: function () {
-//    this.installDependencies();
-  }
 });
