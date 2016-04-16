@@ -67,30 +67,12 @@ $(destinationFile): $(generated)/$(mainTexName).pdf
 	if [ -z "$(realpath $@)" ]; then \
 		ln -s $(abspath $<) $@; \
 	fi
-$(generated)/$(mainTexName).pdf: $(generatedMainTexFile) $(generatedFiles) $(boundingBoxes)
-	# Generate aux file
-	cd $(generated) && \
-	$(latex) $(mainTexName) $(latexFlags)
-	cd $(generated) && \
-	$(bibtex) $(bibtexFlags) $(mainTexName) || echo
-	# Generate PDF file
-	cd $(generated) && \
-	../$(script)/tex2pdf.sh $(latex) $(mainTexName) $(latexFlags)
 
 draft: $(destinationDraftFile)
 $(destinationDraftFile): $(generated)/$(mainTexName)-draft.pdf
 	if [ -z "$(realpath $@)" ]; then \
 		ln -s $(abspath $<) $@; \
 	fi
-$(generated)/$(mainTexName)-draft.pdf: $(generatedMainDraftTexFile) $(generatedFiles) $(boundingBoxes)
-	# Generate aux file
-	cd $(generated) && \
-	$(latex) $(mainTexName)-draft $(latexFlags)
-	cd $(generated) && \
-	$(bibtex) $(bibtexFlags) $(mainTexName)-draft || echo
-	# Generate PDF file
-	cd $(generated) && \
-	../$(script)/tex2pdf.sh $(latex) $(mainTexName)-draft $(latexFlags)
 
 $(generatedMainDraftTexFile): $(mainTexFile)
 	sed -e 's|\documentclass{|\documentclass[draft]{|g' \
@@ -108,6 +90,7 @@ clean:
 	rm -f $(generatedMainTexFile) $(generatedMainDraftTexFile)
 
 # Make rules
+include makefile.d/outcome.mk
 include makefile.d/markdown.mk
 include makefile.d/svg.mk
 include makefile.d/graphviz.mk
