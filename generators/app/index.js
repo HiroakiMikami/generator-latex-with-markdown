@@ -158,4 +158,12 @@ module.exports = yeoman.Base.extend({
       done();
     })
   },
+
+  install: function() {
+    // Create source directories
+    this.spawnCommand('mkdir', ['-p', 'src/graphviz']);
+    this.spawnCommand('mkdir', ['-p', 'src/doc']);
+    this.spawnCommand('mkdir', ['-p', 'src/image']);
+    this.spawnCommand('mkdir', ['-p', 'src/bib']);
+  }
 });
