@@ -7,9 +7,9 @@
 > Yeoman generator for LaTeX documents
 
 ## Features
-1. can combine LaTeX and markdown
-2. can deal with `svg` and `dot`(graphviz) files
-3. can see the difference between two Git commits
+1. Can combine LaTeX and markdown
+2. Can deal with `html`, `svg`, and `dot`(graphviz) files via PDF files
+3. Can see the difference between two Git commits
 
 ## Usage of a Created Project
 ### Structure
@@ -33,6 +33,8 @@ The structure of the project as follows:
 |     |     +--- image4.svg  # svg files are converted to PDF files
 |     +--- graphviz
 |     |     +--- graph.dot   # The graphviz file
+|     |--- html
+|     |     +--- image.html  # The html file that is converted to pdf file
 |     +--- bib
 |           +--- ref.bib     # The reference file
 +--- generated/
@@ -80,6 +82,7 @@ Install the following tools:
 * [inkscape](https://inkscape.org)
 * [dot(Graphviz)](http://www.graphviz.org/)
 * [pandoc](http://pandoc.org/)
+* [pdfcrop](http://pdfcrop.sourceforge.net/)
 * [latexdiff](https://www.ctan.org/tex-archive/support/latexdiff)
 * [git](https://git-scm.com/)
 
