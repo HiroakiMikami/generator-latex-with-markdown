@@ -18,3 +18,9 @@ inkscape = inkscape
 ## graphviz
 dot = dot
 dotFlags = -Tsvg:cairo:cairo
+
+## phantomjs
+phantomjs = ./node_modules/phantomjs/bin/phantomjs
+
+## pdfcrop
+pdfcrop=pdfcrop
