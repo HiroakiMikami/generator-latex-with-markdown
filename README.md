@@ -24,7 +24,7 @@ The structure of the project as follows:
 +--- src/
 |     +--- main.tex          # The main tex file
 |     +--- doc/
-|     |     |--- foo.tex     # Tex file used in main.tex
+|     |     +--- foo.tex     # Tex file used in main.tex
 |     |     +--- bar.md      # Markdown file can be used
 |     +--- image/
 |     |     +--- image1.png
@@ -95,8 +95,7 @@ yo latex-with-markdown
 
 ## Environment
 
-I tested this generator only in Linux, and I think that it does not work in OS X because some scripts (e.g., `realpath`) don't exist.
-[This](https://github.com/HiroakiMikami/generator-latex-with-markdown/issues/12) is an issue about cross platform.
+I tested this generator only in Linux, but I think that it works in OS X.
 
 ## Getting To Know Yeoman
 
