@@ -160,10 +160,14 @@ module.exports = yeoman.Base.extend({
   },
 
   install: function() {
+    // Install phantomjs for creating pdf from HTML files
+    this.npmInstall(['phantomjs-prebuild']);
+
     // Create source directories
     this.spawnCommand('mkdir', ['-p', 'src/graphviz']);
     this.spawnCommand('mkdir', ['-p', 'src/doc']);
     this.spawnCommand('mkdir', ['-p', 'src/image']);
     this.spawnCommand('mkdir', ['-p', 'src/bib']);
+    this.spawnCommand('mkdir', ['-p', 'src/html']);
   }
 });
