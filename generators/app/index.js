@@ -103,6 +103,11 @@ module.exports = yeoman.Base.extend({
           checkWhetherToolExists('latexdiff', () => { resolve(); });
         });
       }).then(() => {
+        // Check 'pdfcrop'
+        return new Promise((resolve, reject) => {
+          checkWhetherToolExists('pdfcrop', () => { resolve(); });
+        });
+      }).then(() => {
         // Check 'git'
         return new Promise((resolve, reject) => {
           checkWhetherToolExists('git', () => { resolve(); });
