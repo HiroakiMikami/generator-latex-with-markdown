@@ -33,7 +33,7 @@ The structure of the project as follows:
 |     |     +--- image4.svg  # svg files are converted to PDF files
 |     +--- graphviz
 |     |     +--- graph.dot   # The graphviz file
-|     |--- html
+|     +--- html
 |     |     +--- image.html  # The html file that is converted to pdf file
 |     +--- bib
 |           +--- ref.bib     # The reference file
