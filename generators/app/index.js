@@ -166,7 +166,7 @@ module.exports = yeoman.Base.extend({
 
   install: function() {
     // Install phantomjs for creating pdf from HTML files
-    this.npmInstall(['phantomjs-prebuild']);
+    this.npmInstall(['phantomjs']);
 
     // Create source directories
     this.spawnCommand('mkdir', ['-p', 'src/graphviz']);
