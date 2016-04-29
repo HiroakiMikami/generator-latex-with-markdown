@@ -4,7 +4,7 @@ const system = require('system');
 const address = system.args[1];
 const output = system.args[2];
 
-page.open("src/html/dummy.html", function (status) {
+page.open(address, function (status) {
   if (status !== 'success') {
     console.log('Unable to load the address!');
   } else {
