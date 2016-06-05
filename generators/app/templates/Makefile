@@ -63,6 +63,7 @@ endif
 endif
 
 .PHONY: all document draft assemble clean
+.PRECIOUS: $(generatedFiles)
 
 all: document
 
