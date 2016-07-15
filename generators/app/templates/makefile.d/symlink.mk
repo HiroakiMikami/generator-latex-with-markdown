@@ -1,6 +1,6 @@
 # Generate symlinks to the generated directory
 ## Tex files
-$(generatedMainTexFile): $(mainTexFile)
+$(generated)/%.tex: $(src)/%.tex
 	mkdir -p $(generated)
 	if [ -z "$(realpath $@)" ]; then \
 		ln -s $(abspath $<) $@; \

@@ -1,5 +1,8 @@
 # Constants
 mainTexName=main
+preambleTexName=preamble
+documentTexName=document
+documentClassJsonName=documentclass
 
 # Directories
 root=.
@@ -24,8 +27,8 @@ generatedBib=$(generated)/bib
 destinationFile=$(root)/$(documentName).pdf
 destinationDraftFile=$(root)/$(documentName)-draft.pdf
 ## Sources
-mainTexFile=$(src)/$(mainTexName).tex
-texFiles=$(shell find $(doc) -name "*.tex")
+documentClassJsonFile=$(src)/$(documentClassJsonName).json
+texFiles=$(shell find $(doc) -name "*.tex") $(src)/$(preambleTexName).tex $(src)/$(documentTexName).tex
 markdownFiles=$(shell find $(doc) -name "*.md")
 pngFiles=$(shell find $(image) -name "*.png")
 jpgFiles=$(shell find $(image) -name "*.jpg")
@@ -38,7 +41,7 @@ bibFiles=$(shell find $(bib) -name "*.bib")
 ## Generated
 generatedMainTexFile=$(generated)/$(mainTexName).tex
 generatedMainDraftTexFile=$(generated)/$(mainTexName)-draft.tex
-generatedTexFiles=$(texFiles:$(doc)/%=$(generatedDoc)/%) $(markdownFiles:$(doc)/%.md=$(generatedDoc)/%.tex)
+generatedTexFiles=$(texFiles:$(src)/%=$(generated)/%) $(markdownFiles:$(doc)/%.md=$(generatedDoc)/%.tex)
 generatedImageFiles=$(imageFiles:$(image)/%=$(generatedImage)/%) $(svgFiles:$(image)/%.svg=$(generatedImage)/%.pdf)
 generatedDotFiles=$(dotFiles:$(graphviz)/%.dot=$(generatedGraphviz)/%.pdf)
 generatedHtmlFiles=$(htmlFiles:$(html)/%.html=$(generatedHtml)/%.pdf)
@@ -95,6 +98,7 @@ clean:
 	rm -f $(generatedMainTexFile) $(generatedMainDraftTexFile)
 
 # Make rules
+include makefile.d/maintex.mk
 include makefile.d/outcome.mk
 include makefile.d/markdown.mk
 include makefile.d/svg.mk
