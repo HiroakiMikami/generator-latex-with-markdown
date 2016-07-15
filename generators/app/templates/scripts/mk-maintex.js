@@ -18,7 +18,11 @@ const options = json.options || []
 
 // Generate the main tex file
 const content = `
-\\documentclass[${options.join(',')}]{${documentClass}}
+\\ifdraftmode
+  \\documentclass[${options.join(',')}, draft]{${documentClass}}
+\\else
+  \\documentclass[${options.join(',')}]{${documentClass}}
+\\fi
 \\input{${preambleTexName}}
 \\begin{document}
 \\input{${documentTexName}}
