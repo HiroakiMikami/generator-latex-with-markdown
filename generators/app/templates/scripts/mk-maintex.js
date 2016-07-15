@@ -23,8 +23,12 @@ const content = `
 \\else
   \\documentclass[${options.join(',')}]{${documentClass}}
 \\fi
+\\usepackage{lineno}
 \\input{${preambleTexName}}
 \\begin{document}
+\\iflineno
+  \\linenumbers
+\\fi
 \\input{${documentTexName}}
 \\end{document}
 `

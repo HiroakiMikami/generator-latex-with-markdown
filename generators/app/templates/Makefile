@@ -27,6 +27,7 @@ generatedBib=$(generated)/bib
 ## Destination
 destinationFile=$(root)/$(documentName).pdf
 destinationDraftFile=$(root)/$(documentName)-draft.pdf
+destinationWithoutImageFile=$(root)/$(documentName)-no-image.pdf
 ## Sources
 documentClassJsonFile=$(src)/$(documentClassJsonName).json
 texFiles=$(shell find $(doc) -name "*.tex") $(src)/$(preambleTexName).tex $(src)/$(documentTexName).tex
@@ -43,6 +44,7 @@ bibFiles=$(shell find $(bib) -name "*.bib")
 generatedMainTexFile=$(generated)/$(mainTexName).tex
 generatedMainDocumentTexFile=$(generated)/$(mainTexName)-document.tex
 generatedMainDraftTexFile=$(generated)/$(mainTexName)-draft.tex
+generatedMainWithoutImageTexFile=$(generated)/$(mainTexName)-no-image.tex
 generatedTexFiles=$(texFiles:$(src)/%=$(generated)/%) $(markdownFiles:$(doc)/%.md=$(generatedDoc)/%.tex)
 generatedImageFiles=$(imageFiles:$(image)/%=$(generatedImage)/%) $(svgFiles:$(image)/%.svg=$(generatedImage)/%.pdf)
 generatedDotFiles=$(dotFiles:$(graphviz)/%.dot=$(generatedGraphviz)/%.pdf)
@@ -82,11 +84,21 @@ $(destinationDraftFile): $(generated)/$(mainTexName)-draft.pdf
 		ln -s $(abspath $<) $@; \
 	fi
 
+no-image: $(destinationWithoutImageFile)
+$(destinationWithoutImageFile): $(generated)/$(mainTexName)-no-image.pdf
+	if [ -z "$(realpath $@)" ]; then \
+		ln -s $(abspath $<) $@; \
+	fi
+
+
 $(generatedMainDocumentTexFile): $(generatedMainTexFile)
 	cat $(prefix)/document-prefix.tex $< > $@
 
 $(generatedMainDraftTexFile): $(generatedMainTexFile)
 	cat $(prefix)/draft-prefix.tex $< > $@
+
+$(generatedMainWithoutImageTexFile): $(generatedMainTexFile)
+	cat $(prefix)/no-image-prefix.tex $< > $@
 
 assemble: $(generated)/$(mainTexName)-assemble.tex
 $(generated)/$(mainTexName)-assemble.tex: $(generatedMainTexFile) $(generatedTexFiles)
