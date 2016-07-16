@@ -13,7 +13,7 @@ const target = process.argv[6];
 // Parse the json file and obtain data
 const json = JSON.parse(fs.readFileSync(documentClassData, 'utf8'));
 
-const documentClass = json.documentClass || "article"
+const documentClass = json.documentclass || "article"
 const options = json.options || []
 
 // Generate the main tex file
