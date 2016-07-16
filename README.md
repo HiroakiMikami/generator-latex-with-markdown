@@ -16,27 +16,30 @@
 The structure of the project as follows:
 
 ```
-+--- [ProjectName].pdf       # Generated PDF document
-+--- [ProjectName]-draft.pdf # Generated PDF document (draft mode)
-+--- diff.pdf                # Difference between two Git commits
-+--- parameters.mk           # Definition of the parameters
-+--- commands.mk             # Commands and options used to compile
++--- [ProjectName].pdf          # Generated PDF document
++--- [ProjectName]-draft.pdf    # Generated PDF document (show linenumber)
++--- [ProjectName]-no-image.pdf # Generated PDF document (show linenumber and use draftmode)
++--- diff.pdf                   # Difference between two Git commits
++--- parameters.mk              # Definition of the parameters
++--- commands.mk                # Commands and options used to compile
 +--- src/
-|     +--- main.tex          # The main tex file
+|     +--- preamble.tex         # The tex file containing the preamble
+|     +--- document.tex         # The tex file containing the document
+|     +--- documentclass.json   # The information about documentclass
 |     +--- doc/
-|     |     +--- foo.tex     # Tex file used in main.tex
-|     |     +--- bar.md      # Markdown file can be used
+|     |     +--- foo.tex        # Tex file used in main.tex
+|     |     +--- bar.md         # Markdown file can be used
 |     +--- image/
 |     |     +--- image1.png
 |     |     +--- image2.jpg
 |     |     +--- image3.pdf
-|     |     +--- image4.svg  # svg files are converted to PDF files
+|     |     +--- image4.svg     # svg files are converted to PDF files
 |     +--- graphviz
-|     |     +--- graph.dot   # The graphviz file
+|     |     +--- graph.dot      # The graphviz file
 |     +--- html
-|     |     +--- image.html  # The html file that is converted to pdf file
+|     |     +--- image.html     # The html file that is converted to pdf file
 |     +--- bib
-|           +--- ref.bib     # The reference file
+|           +--- ref.bib        # The reference file
 +--- generated/
 +--- scripts/
 +--- makefile.d/
