@@ -69,6 +69,17 @@ evince diff.pdf
 > **Note:**
 > I think there are no bugs, but I recommend to run `git commit` before running `pdf-diff.sh`. `pdf-diff.sh` operates the revision graph of Git, so changes that are not committed may be erased.
 
+### Build automatically
+To build a document automatically, run:
+```bash
+./amake
+```
+
+If you want to use the draft mode, run:
+```bash
+./amake draft
+```
+
 ## Generator Usage
 ### 1. Install [Yeoman](http://yeoman.io) and this generator
 Install [Yeoman](http://yeoman.io) and generator-latex-with-markdown using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
