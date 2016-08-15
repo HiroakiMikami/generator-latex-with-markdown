@@ -101,8 +101,8 @@ $(generatedMainWithoutImageTexFile): $(generatedMainTexFile)
 	cat $(prefix)/no-image-prefix.tex $< > $@
 
 assemble: $(generated)/$(mainTexName)-assemble.tex
-$(generated)/$(mainTexName)-assemble.tex: $(generatedMainTexFile) $(generatedTexFiles)
-	node $(script)/assemble.js $(generated) $(generatedMainTexFile) > $(generated)/$(mainTexName)-assemble.tex
+$(generated)/$(mainTexName)-assemble.tex: $(generatedMainDocumentTexFile) $(generatedTexFiles)
+	node $(script)/assemble.js $(generated) $(generatedMainDocumentTexFile) > $(generated)/$(mainTexName)-assemble.tex
 
 clean:
 	rm -rf $(generated)/*
